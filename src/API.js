@@ -3,7 +3,7 @@ import { Component } from 'react';
 import axios from 'axios';
 // import qs from 'querystring';
 
-const api = 'joanitolopo.space/'
+// const api = 'joanitolopo.space/'
 // const api = 'https://jsonplaceholder.typicode.com/'
 // const api = 'https://guarded-dusk-41374.herokuapp.com/'
 
@@ -36,10 +36,10 @@ class API extends Component {
 
 
     componentDidMount() {
-        axios.get('http://joanitolopo.space/get_history').then(res=>{
+        axios.get('https://joanitolopo.space/get_result').then(res=>{
             console.log(res.data)
             this.setState({
-                items: res.data.data
+                items: res.data
             })
         })
     }

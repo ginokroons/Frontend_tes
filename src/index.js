@@ -5,8 +5,8 @@ import './index.css';
 //import App from './App';
 //import App2 from './App2';
 import reportWebVitals from './reportWebVitals';
-// import App3 from './App3';
-import API from './API';
+import App3 from './App3';
+// import API from './API';
 // import App4 from './App4';
 // import Editor from './components/Editor';
 // import UploadFile from './components/UploadFile';
@@ -15,8 +15,8 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     {/* <App2 /> */}
-    {/* <App3/> */}
-    <API/>
+    <App3/>
+    {/* <API/> */}
     {/* <App4/> */}
     {/* <UploadFile/> */}
     {/* <Editor/> */}
