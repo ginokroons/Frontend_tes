@@ -2,10 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 // import UploadFile from './components/UploadFile';
 import './index.css';
+import Navbar from './layouts/header/Navbar';
 //import App from './App';
-//import App2 from './App2';
+// import App2 from './App2';
 import reportWebVitals from './reportWebVitals';
-import App3 from './App3';
+// import App3 from './App3';
 // import API from './API';
 // import App4 from './App4';
 // import Editor from './components/Editor';
@@ -15,12 +16,13 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     {/* <App2 /> */}
-    <App3/>
+    {/* <App3/> */}
     {/* <API/> */}
     {/* <App4/> */}
     {/* <UploadFile/> */}
     {/* <Editor/> */}
     {/* <MuiButton/> */}
+    <Navbar/>
   </React.StrictMode>
 );
 

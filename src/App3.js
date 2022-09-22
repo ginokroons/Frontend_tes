@@ -14,7 +14,6 @@ function App3() {
         // axios.get(`https://joanitolopo.space/get_result/`+ 'python')
         //     .then(response => {
         //         console.log(response);
-                
         //     });
       console.log('hi',nameImage);
     }, [nameImage])
@@ -25,8 +24,7 @@ function App3() {
 
         axios.get(`https://joanitolopo.space/get_result/`+ nameImage)
             .then(response => {
-                console.log(response);
-                
+                console.log(response); 
             });
 
         console.log(event.target);
