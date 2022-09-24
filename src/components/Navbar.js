@@ -17,8 +17,9 @@ const Navbar = () => {
   return (
     <AppBar position='static'>
       <Toolbar>
-        <img alt='logo' src='/logo-wordmark.png' width={100} />
+        
         <Stack direction='row' spacing={2}>
+          <img alt='logo' src='/logo-wordmark.png' width={100} />
           <Button color='inherit' endIcon={<KeyboardArrowDown />} to='/scan-images' component={RouterLink}>
             Image Scan
           </Button>
