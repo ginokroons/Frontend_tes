@@ -20,6 +20,9 @@ const Navbar = () => {
         
         <Stack direction='row' spacing={2}>
           <img alt='logo' src='/logo-wordmark.png' width={100} />
+          <Button color='inherit' to='/project-list' component={RouterLink}>
+            Project List
+          </Button>
           <Button color='inherit' endIcon={<KeyboardArrowDown />} to='/scan-images' component={RouterLink}>
             Image Scan
           </Button>

@@ -33,9 +33,9 @@ const ProjectList = () => {
     const handleSubmit = (event) => {
         event.preventDefault()
 
-        axios.post(`http://192.168.1.148/roy/project`+ projectName)
+        axios.post(`http://192.168.1.148/roy/project`, {projectname: projectName, description: projectDesc})
             .then(response => {
-              console.log(response); 
+              console.log(response.data.data); 
             });
 
         handleClose()
@@ -74,9 +74,9 @@ const ProjectList = () => {
                         <Typography variant='subtitle2'>Project Name</Typography>
                         <TextField size='small' value={projectName} onChange={handleChange1} variant='outlined'/>  
                     </Stack>
-                    <Stack spacing={4} direction='row'>
+                    <Stack spacing={2} direction='row'>
                         <Typography variant='subtitle2'>Project Description</Typography>
-                        <TextField size='small' value={projectDesc} onChange={handleChange2} variant='outlined' multiline fullwidth/>  
+                        <TextField size='small' value={projectDesc} onChange={handleChange2} variant='outlined' multiline/>  
                     </Stack>
                     <Button variant="contained" type='submit'>Submit</Button>
                 </Stack>
