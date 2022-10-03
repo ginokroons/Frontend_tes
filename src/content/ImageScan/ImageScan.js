@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import {Button, Stack, TextField, Typography, Box} from '@mui/material';
 import React from 'react'
+import UploadFile from '../../components/UploadFile';
 
 function App3() {
 
@@ -54,6 +55,7 @@ function App3() {
             <Button variant="contained" type='submit'>Submit</Button>
           </Stack>
         </Box>
+        <UploadFile/>
     </div>
   )
 }

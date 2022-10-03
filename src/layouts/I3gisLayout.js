@@ -4,9 +4,9 @@ import Navbar from '../components/Navbar';
 
 function I3gisLayout() {
   return (
-    <div>
+    <div style={{height: '100vh', boxSizing: 'border-box'}}>
       <Navbar />
-      <Outlet />
+      <Outlet/>
     </div>
   );
 }

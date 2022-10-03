@@ -1,5 +1,7 @@
+import { Card, Typography } from '@mui/material';
 import React from 'react';
 import {useDropzone} from 'react-dropzone';
+import { CloudUpload } from '@mui/icons-material';
 
 
 const fileName = 'Dockerfile';
@@ -52,8 +54,12 @@ function UploadFile(props) {
         <section className="container">
           <div {...getRootProps({ className: 'dropzone' })}>
             <input {...getInputProps()} />
-            <p>Drag 'n' drop some files here, or click to select files</p>
-            <em>(Only *.tar will be accepted)</em>
+            {/* <p>Drag 'n' drop some files here, or click to select files</p>
+            <em>(Only *.tar will be accepted)</em> */}
+            <Card variant='outlined' sx={{ width: 500, height: 100, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', border: 1, borderColor: 'primary.main', borderRadius: '16px'}}>
+              <CloudUpload color='primary' sx={{fontSize: 50}}/>
+              <Typography color='primary'>Drag 'n' drop some files here, or click to select files</Typography>
+            </Card>
           </div>
           <aside>
             <h4>Accepted files</h4>

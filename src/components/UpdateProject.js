@@ -1,7 +1,7 @@
 import { React, useState } from 'react';
 import '../App.css'
-import {Button, Stack, TextField, Typography, Box, Modal} from '@mui/material';
-import { AddCircleOutline } from '@mui/icons-material';
+import {Button, Stack, TextField, Typography, Box, Modal, IconButton } from '@mui/material';
+import { Edit } from '@mui/icons-material';
 import axios from 'axios';
 
 
@@ -17,7 +17,7 @@ const style = {
 };
 
 
-const PostProject = ({projectName, setProjectName, projectDesc, setProjectDesc}) => {
+const UpdateProject = ({projectName, setProjectName, projectDesc, setProjectDesc}) => {
 
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -30,7 +30,7 @@ const PostProject = ({projectName, setProjectName, projectDesc, setProjectDesc})
   const handleSubmit = (event) => {
     event.preventDefault()
 
-    axios.post(`http://192.168.1.148/roy/project`, {projectname: projectName, description: projectDesc})
+    axios.put(`http://192.168.1.148/roy/project/1`, {projectname: projectName, description: projectDesc})
       .then(response => {
         console.log(response.data.data); 
       });
@@ -51,12 +51,13 @@ const PostProject = ({projectName, setProjectName, projectDesc, setProjectDesc})
 
   return (
     <div>
-      <Button variant='contained' endIcon={<AddCircleOutline/>} onClick={handleOpen}>Add Project</Button>
-
+      <IconButton onClick={() => handleOpen()}>
+        <Edit color='primary'/>
+      </IconButton>
       <Modal
-            open={open}
-            onClose={handleClose}
-        >
+        open={open}
+        onClose={handleClose}
+      >
         <Box component='form' sx={style} onSubmit={handleSubmit}>
           <Stack spacing={4}>
             <Stack spacing={6} direction='row'>
@@ -67,7 +68,7 @@ const PostProject = ({projectName, setProjectName, projectDesc, setProjectDesc})
                 <Typography variant='subtitle2'>Project Description</Typography>
                 <TextField size='small' value={projectDesc} onChange={handleChange2} variant='outlined'/>  
             </Stack>
-            <Button variant="contained" type='submit'>Add</Button>
+            <Button variant="contained" type='submit'>Update</Button>
           </Stack>
         </Box>
       </Modal>
@@ -75,4 +76,4 @@ const PostProject = ({projectName, setProjectName, projectDesc, setProjectDesc})
   )
 }
 
-export default PostProject
+export default UpdateProject
