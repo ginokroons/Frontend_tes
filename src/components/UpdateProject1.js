@@ -15,7 +15,7 @@ const style = {
 };
 
 
-const PostProject = ({
+const UpdateProject1 = ({
   open,
   handleClose,
   handleSubmit,
@@ -29,7 +29,7 @@ const PostProject = ({
             open={open}
             onClose={handleClose}
         >
-        <Box component='form' sx={style} onSubmit={(e) => handleSubmit(e, 'create')}>
+        <Box component='form' sx={style} onSubmit={(e) => handleSubmit(e, 'update')}>
           <Stack spacing={4}>
             <Stack spacing={6} direction='row'>
                 <Typography variant='subtitle2'>Project Name</Typography>
@@ -39,11 +39,11 @@ const PostProject = ({
                 <Typography variant='subtitle2'>Project Description</Typography>
                 <TextField size='small' value={project.desc} name='description' onChange={handleChange} variant='outlined'/>  
             </Stack>
-            <Button variant="contained" type='submit'>Add</Button>
+            <Button variant="contained" type='submit'>Update</Button>
           </Stack>
         </Box>
       </Modal>
   )
 }
 
-export default PostProject
+export default UpdateProject1
