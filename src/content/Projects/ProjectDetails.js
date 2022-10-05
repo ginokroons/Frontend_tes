@@ -1,31 +1,56 @@
-import React from 'react'
-import { Box, Grid, Stack, Button, Card, Typography } from '@mui/material'
-import { InsertDriveFile, KeyboardArrowDown } from '@mui/icons-material'
+import React from 'react';
+import { Box, Grid, Stack, Button, Card, Typography } from '@mui/material';
+import { InsertDriveFile, KeyboardArrowDown } from '@mui/icons-material';
 
 const ProjectDetails = () => {
   return (
     <Box className='Content'>
       <Box
         sx={{
-          
           width: '100%',
           display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'flex-start',
-          justifyContent: 'flex-start'
-        }}
-      >
-        <Grid container direction='row' sx={{flexGrow: 1}}>
-          <Card sx={{width: 80, height: 80, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-            <InsertDriveFile color='primary' sx={{fontSize: 40}}/>
+          alignItems: 'center',
+          justifyContent: 'space-between',
+        }}>
+        <Box
+          sx={{
+            display: 'flex',
+          }}
+          gap={2}>
+          <Card sx={{ width: 80, height: 80, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <InsertDriveFile color='primary' sx={{ fontSize: 40 }} />
           </Card>
-          <Typography variant='h5'>Tes</Typography>
-        </Grid>
-        <Button variant='contained' endIcon={<KeyboardArrowDown/>}>Image Scan</Button>
-        <Button variant='contained' endIcon={<KeyboardArrowDown/>}>Configuration Scan</Button>
-      </Box>
-    </Box>
-  )
-}
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'flex-start',
+              justifyContent: 'center',
+            }}>
+            <Typography variant='h5'>Project Name</Typography>
+            <Typography variant='h5'>Description Project</Typography>
+          </Box>
+        </Box>
 
-export default ProjectDetails
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'flex-start',
+            justifyContent: 'flex-start',
+          }}
+          gap={2}>
+          <Button variant='contained' endIcon={<KeyboardArrowDown />}>
+            Image Scan
+          </Button>
+          <Button variant='contained' endIcon={<KeyboardArrowDown />}>
+            Configuration Scan
+          </Button>
+        </Box>
+      </Box>
+
+      <Card sx={{ width: '100%', height: '600px', mt: 2 }}>content</Card>
+    </Box>
+  );
+};
+
+export default ProjectDetails;

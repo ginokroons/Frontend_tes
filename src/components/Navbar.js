@@ -15,7 +15,7 @@ const Navbar = () => {
   };
 
   return (
-    <Box sx={{display: 'flex'}}>
+    <Box sx={{ display: 'flex' }}>
       <AppBar position='static'>
         <Toolbar>
           <Stack direction='row' spacing={2}>
