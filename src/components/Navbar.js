@@ -29,6 +29,9 @@ const Navbar = () => {
             <Button color='inherit' endIcon={<KeyboardArrowDown />} to='/configuration-scan' component={RouterLink}>
               Configuration Scan
             </Button>
+            <Button color='inherit' to='/project-details' component={RouterLink}>
+              detail
+            </Button>
           </Stack>
         </Toolbar>
       </AppBar>

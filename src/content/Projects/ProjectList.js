@@ -1,11 +1,10 @@
 import { React, useState, useEffect } from 'react';
 import '../../App.css'
-import { Box, Card, Button, Modal } from '@mui/material';
+import { Box, Card, Button } from '@mui/material';
 import { AddCircleOutline } from '@mui/icons-material';
 import axios from 'axios';
 import ProjectTable from '../../components/ProjectTable';
 import PostProject from '../../components/PostProject';
-import UpdateProject from '../../components/UpdateProject';
 import UpdateProject1 from '../../components/UpdateProject1';
 
 
@@ -14,54 +13,59 @@ const ProjectList = () => {
   const [projects, setProjects] = useState([]);
   const [project, setProject] = useState({id: null, name: '', desc: ''});
   const [open, setOpen] = useState({create: false, update: false});
-  const handleOpenCreate = () => setOpen(pref => ({...pref, create: true}));
+  const handleOpenCreate = () => setOpen(prev => ({...prev, create: true}));
   const handleCloseCreate = () => {
-    setOpen(pref => ({...pref, create: false}))
+    setOpen(prev => ({...prev, create: false}))
     setProject({id: null, name: '', desc: ''})
   }
   const handleOpenUpdate = (data) => {
     setProject({id: data.ID, name: data.projectname, desc: data.description})
-    setOpen(pref => ({...pref, update: true}))};
+    setOpen(prev => ({...prev, update: true}))};
   const handleCloseUpdate = () => {
-    setOpen(pref => ({...pref, update: false}))
+    setOpen(prev => ({...prev, update: false}))
     setProject({id: null, name: '', desc: ''})
   }
 
-  const handleSubmit = (event, tipe) => {
+  const handleSubmit = (event, type) => {
     event.preventDefault()
-    if (tipe === 'create') {
+
+    if (type === 'create') {
       
     axios.post(`http://192.168.1.148/roy/project`, {projectname: project.name, description: project.desc})
       .then(response => {
         console.log(response.data.data);
         handleCloseCreate()
-        window.location.reload() 
+        // window.location.reload() 
+      })
+      .catch(err => {
+        console.log(err.response.data.error)
       });
+
     console.log(event.target);
+    console.log(type)
 
   }
-    else {
+  else {
 
     axios.put(`http://192.168.1.148/roy/project/${project.id}`, {projectname: project.name, description: project.desc})
       .then(response => {
         console.log(response.data.data);
+        console.log(project.id)
         handleCloseUpdate()
-        window.location.reload() 
+        // window.location.reload() 
       });
 
-    
     console.log(event.target);
-
     }
     
   }
 
   const handleChange = (event) => {
     if (event.target.name === 'name')(
-      setProject(pref => ({...pref, name: event.target.value}))
+      setProject(prev => ({...prev, name: event.target.value}))
     )
     else (
-      setProject(pref => ({...pref, desc: event.target.value}))
+      setProject(prev => ({...prev, desc: event.target.value}))
     )
     console.log(event.target.name)
   }
@@ -93,6 +97,15 @@ const ProjectList = () => {
 
   const handleDelete = () => {
     axios.delete(`http://192.168.1.148/roy/project/${project.id}`)
+    .then(response => {
+      setProjects(
+        response.data.data
+      )
+    })
+    .catch(err => {
+      console.log(err.response.data.error)
+      console.log(project.id)
+    })
   }
 
 
@@ -100,9 +113,7 @@ const ProjectList = () => {
   return (
     // <Box sx={{p: 5, m: 0, height: '100vh', boxSizing: 'border-box', backgroundColor: '#282c34'}}>
     <Box className='Content'>
-
-        
-        <Box
+      <Box
         sx={{
           
           width: '100%',
@@ -111,9 +122,9 @@ const ProjectList = () => {
           alignItems: 'flex-start',
           justifyContent: 'flex-start'
         }}
-        >
+      >
         <Button variant='contained' endIcon={<AddCircleOutline/>} onClick={handleOpenCreate}>Add Project</Button>
-
+        
         <Card 
           sx={{mt: 4, width: '100%', minHeight: 250, boxShadow: 3
           }}
@@ -124,22 +135,21 @@ const ProjectList = () => {
             handleOpenUpdate={handleOpenUpdate}
           />
         </Card>
-
-        </Box>
-        <UpdateProject1
-          open={open.update}
-          handleClose={handleCloseUpdate}
+      </Box>
+      <UpdateProject1
+        open={open.update}
+        handleClose={handleCloseUpdate}
+        handleSubmit={handleSubmit}
+        handleChange={handleChange}
+        project={project}
+      />
+      <PostProject
+          open={open.create}
+          handleClose={handleCloseCreate}
           handleSubmit={handleSubmit}
           handleChange={handleChange}
           project={project}
-        />
-        <PostProject
-            open={open.create}
-            handleClose={handleCloseCreate}
-            handleSubmit={handleSubmit}
-            handleChange={handleChange}
-            project={project}
-        />
+      />
     </Box>
   )
 }
