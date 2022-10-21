@@ -4,9 +4,7 @@ import { Edit, OpenInNew, Delete } from '@mui/icons-material';
 import { Link as RouterLink } from 'react-router-dom';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 
-const ProjectTable = ({projects,
-  handleDelete,
-  handleOpenUpdate}) => { 
+const ProjectTable = ({projects, handleDelete, handleOpenUpdate, handleClickDetails}) => { 
   return (
     <Box sx={{ boxShadow: 3 }}>
       <TableContainer component={Paper} >
@@ -22,9 +20,9 @@ const ProjectTable = ({projects,
           <TableBody>
             {projects.map((project) => (
               <TableRow
-              key={project.ID}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
+                key={project.ID}
+                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              >
               <TableCell component="th" scope="row">
                 {project.projectname}
               </TableCell>
@@ -34,10 +32,10 @@ const ProjectTable = ({projects,
                 <IconButton onClick={() => handleOpenUpdate(project)}>
                   <Edit color='primary'/>
                 </IconButton>
-                <IconButton onClick={() => handleDelete(project.ID)}>
+                <IconButton onClick={() => handleDelete()}>
                   <Delete sx={{color: '#f44336'}}/>
                 </IconButton>
-                <IconButton to='/project-details' component={RouterLink}>
+                <IconButton onClick={() => handleClickDetails(project)}>
                   <OpenInNew color='primary'/>
                 </IconButton>
               </TableCell>

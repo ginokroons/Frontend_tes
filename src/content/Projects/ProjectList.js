@@ -6,10 +6,12 @@ import axios from 'axios';
 import ProjectTable from '../../components/ProjectTable';
 import PostProject from '../../components/PostProject';
 import UpdateProject1 from '../../components/UpdateProject1';
+import { useNavigate } from 'react-router-dom';
 
 
 const ProjectList = () => {
 
+  const navigate = useNavigate();
   const [projects, setProjects] = useState([]);
   const [project, setProject] = useState({id: null, name: '', desc: ''});
   const [open, setOpen] = useState({create: false, update: false});
@@ -26,12 +28,18 @@ const ProjectList = () => {
     setProject({id: null, name: '', desc: ''})
   }
 
+  const handleClickDetails = (tes) => {
+    console.log(tes, 'tes');
+    navigate(`/project-list/${tes.ID}`)
+  }
+
+
   const handleSubmit = (event, type) => {
     event.preventDefault()
 
     if (type === 'create') {
       
-    axios.post(`http://192.168.1.148/roy/project`, {projectname: project.name, description: project.desc})
+    axios.post(`http://192.168.1.129/roy/project`, {projectname: project.name, description: project.desc})
       .then(response => {
         console.log(response.data.data);
         handleCloseCreate()
@@ -47,7 +55,7 @@ const ProjectList = () => {
   }
   else {
 
-    axios.put(`http://192.168.1.148/roy/project/${project.id}`, {projectname: project.name, description: project.desc})
+    axios.put(`http://192.168.1.129/roy/project/${project.id}`, {projectname: project.name, description: project.desc})
       .then(response => {
         console.log(response.data.data);
         console.log(project.id)
@@ -81,7 +89,7 @@ const ProjectList = () => {
   
 
   useEffect(() => {
-    axios.get(`http://192.168.1.148/roy/project`)
+    axios.get(`http://192.168.1.129/roy/project`)
     // axios.get(`https://jsonplaceholder.typicode.com/users`)
       .then(response => {
         console.log(typeof response.data.data, 'dari respons');
@@ -96,7 +104,7 @@ const ProjectList = () => {
 
 
   const handleDelete = () => {
-    axios.delete(`http://192.168.1.148/roy/project/${project.id}`)
+    axios.delete(`http://192.168.1.129/roy/project/${project.id}`)
     .then(response => {
       setProjects(
         response.data.data
@@ -133,6 +141,7 @@ const ProjectList = () => {
             projects={projects}
             handleDelete={handleDelete}
             handleOpenUpdate={handleOpenUpdate}
+            handleClickDetails={handleClickDetails}
           />
         </Card>
       </Box>

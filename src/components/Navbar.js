@@ -1,18 +1,10 @@
-/* eslint-disable no-unused-vars */
 import React from 'react';
 import { AppBar, Button, Toolbar, Stack, Box } from '@mui/material';
 import { KeyboardArrowDown } from '@mui/icons-material';
 import { Link as RouterLink } from 'react-router-dom';
 
 const Navbar = () => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+
 
   return (
     <Box sx={{ display: 'flex' }}>

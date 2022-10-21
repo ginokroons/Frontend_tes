@@ -14,6 +14,7 @@ function App() {
             <Route index={true} element={<ProjectList />} />
             <Route path=':projectId' element={<ProjectDetails />} /> {/*A nested route!*/}
           </Route>
+          <Route path='project-details' element={<ProjectDetails />} />
         </Route>
       </Routes>
     </Router>

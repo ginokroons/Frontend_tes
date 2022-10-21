@@ -26,8 +26,8 @@ const PostProject = ({
   return (
 
       <Modal
-            open={open}
-            onClose={handleClose}
+        open={open}
+        onClose={handleClose}
         >
         <Box component='form' sx={style} onSubmit={(e) => handleSubmit(e, 'create')}>
           <Stack spacing={4}>
