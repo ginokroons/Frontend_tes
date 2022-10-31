@@ -48,6 +48,7 @@ const ImageName = ({open1, handleClose}) => {
 
     const handleChange = (event) => {
       setNameImage(event.target.value);
+      console.log(event.target)
     }  
 
 

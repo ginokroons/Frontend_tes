@@ -12,6 +12,7 @@ import FileTable from '../../components/FileTable';
 const ProjectDetails = () => {
 
   const {projectId} = useParams();
+  const [files, setFiles] = useState([]);
   const [anchorEl, setAnchorEl] = useState(null);
   const [type, setType] = useState('')
   const [project, setProject] = useState(null);
@@ -45,13 +46,27 @@ const ProjectDetails = () => {
   useEffect(() => {
     axios.get(`http://192.168.1.129/roy/project/${projectId}`)
       .then(response => {
-        console.log( response.data.data, 'dari respons');
         setProject(response.data.data)
       })
       .catch((err) => {
         console.log(err);
       });
   }, [projectId])
+
+  useEffect(() => {
+    axios.get(`http://192.168.1.129/roy/upload`)
+      .then(response => {
+        setFiles(response.data.data)
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [])
+
+  useEffect(() => {
+  }, [files])
+  
+
 
   return (
     <Box className='Content'>
@@ -132,6 +147,7 @@ const ProjectDetails = () => {
 
       <Card sx={{ width: '100%', height: '400px', mt: 4 }}>
         <FileTable
+          files={files}
           projectId={projectId}
         />
       </Card>
