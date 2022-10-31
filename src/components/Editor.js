@@ -37,6 +37,7 @@ function Editor({open1, handleClose}) {
   const [code, setCode] = useState('');
 
   const handleChange = (event) => {
+    setCode(event);
     console.log(event);
   }
 
