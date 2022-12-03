@@ -3,6 +3,7 @@ import { Box, Button, Card, Menu, MenuItem, Skeleton, Typography } from '@mui/ma
 import { Folder, KeyboardArrowDown } from '@mui/icons-material';
 import Editor from '../../components/Editor';
 import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import ImageName from '../../components/ImageName';
 import UploadFileImage from '../../components/UploadFileImage';
@@ -10,7 +11,7 @@ import UploadFileConf from '../../components/UploadFileConf';
 import FileTable from '../../components/FileTable';
 
 const ProjectDetails = () => {
-
+  const navigate = useNavigate();
   const {projectId} = useParams();
   const [files, setFiles] = useState([]);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -18,6 +19,10 @@ const ProjectDetails = () => {
   const [project, setProject] = useState(null);
   const [open1, setOpen1] = useState({imagename: false, imageupload: false, confedit: false, confupload: false});
   const open = Boolean(anchorEl);
+  const handleClickDetails1 = (tes) => {
+    console.log(tes, 'tes');
+    navigate(`/file-details/${tes.ID}`)
+  }
   const handleClick = (event, type) => {
     setType(type)
     setAnchorEl(event.currentTarget);
@@ -149,6 +154,7 @@ const ProjectDetails = () => {
         <FileTable
           files={files}
           projectId={projectId}
+          handleClickDetails1={handleClickDetails1}
         />
       </Card>
       <ImageName

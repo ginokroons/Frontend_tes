@@ -13,7 +13,7 @@ const FileTable = ({files, projectId}) => {
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>File Name</TableCell>
+              <TableCell>File Target</TableCell>
               <TableCell>File Type</TableCell>
               <TableCell>Created At</TableCell>
               <TableCell>Actions</TableCell>

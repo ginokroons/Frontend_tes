@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import ProjectList from './content/Projects/ProjectList';
 import ProjectDetails from './content/Projects/ProjectDetails';
+import FileDetails from './content/File/FileDetails';
 
 function App() {
   return (
@@ -14,7 +15,10 @@ function App() {
             <Route index={true} element={<ProjectList />} />
             <Route path=':projectId' element={<ProjectDetails />} /> {/*A nested route!*/}
           </Route>
-          <Route path='project-details' element={<ProjectDetails />} />
+          <Route path='project-details'>
+            <Route index={true} element={<ProjectDetails />} />
+            <Route path=':fileId' element={<FileDetails />} />
+          </Route>
         </Route>
       </Routes>
     </Router>
