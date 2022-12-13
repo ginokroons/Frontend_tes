@@ -1,6 +1,11 @@
 import React from "react";
 import {Box, Paper} from '@mui/material';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+import {IconButton} from '@mui/material';
+import { OpenInNew, Delete } from '@mui/icons-material';
+
+
+
 
 const FileTable = ({files, projectId}) => {
   console.log(files.filter(data=>data.ProjectID===parseInt(projectId)),'haii')

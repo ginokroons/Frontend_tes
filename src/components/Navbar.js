@@ -14,9 +14,9 @@ const Navbar = () => {
             <Button color='inherit' to='/project-list' component={RouterLink}>
               Project List
             </Button>
-            <Button color='inherit' to='/project-details' component={RouterLink}>
+            {/* <Button color='inherit' to='/project-details' component={RouterLink}>
               detail
-            </Button>
+            </Button> */}
           </Stack>
         </Toolbar>
       </AppBar>

@@ -98,8 +98,10 @@ const ProjectDetails = () => {
               justifyContent: 'center',
               width: 200
             }}>
-            <Typography variant='h4' noWrap>{project?.projectname??<Skeleton width='100px' />}</Typography>
-            <Typography variant='subtitle2' noWrap>{project?.description??<Skeleton width='200px'/>}</Typography>
+            <Typography variant='h4' noWrap>{project?.projectname??"Project 1"}</Typography>
+            <Typography variant='subtitle2' noWrap>{project?.description??"For Testing Only"}</Typography>
+            {/* <Typography variant='h4' noWrap>{project?.projectname??<Skeleton width='100px' />}</Typography>
+            <Typography variant='subtitle2' noWrap>{project?.description??<Skeleton width='200px'/>}</Typography> */}
           </Box>
         </Box>
 

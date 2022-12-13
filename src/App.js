@@ -19,6 +19,9 @@ function App() {
             <Route index={true} element={<ProjectDetails />} />
             <Route path=':fileId' element={<FileDetails />} />
           </Route>
+          <Route path='file-details'>
+            <Route index={true} element={<FileDetails />} />
+          </Route>
         </Route>
       </Routes>
     </Router>
