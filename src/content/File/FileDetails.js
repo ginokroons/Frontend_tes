@@ -10,7 +10,7 @@ const FileDetails = (result) => {
   const [file, setFile] = useState(null);
 
   useEffect(() => {
-    axios.get(`http://192.168.1.129/roy/upload/${fileId}`)
+    axios.get(`http://192.168.122.1/roy/upload/${fileId}`)
       .then(response => {
         setFile(response.data.data)
       })

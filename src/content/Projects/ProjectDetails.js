@@ -49,7 +49,7 @@ const ProjectDetails = () => {
   
 
   useEffect(() => {
-    axios.get(`http://192.168.1.129/roy/project/${projectId}`)
+    axios.get(`http://192.168.122.1/roy/project/${projectId}`)
       .then(response => {
         setProject(response.data.data)
       })
@@ -59,7 +59,7 @@ const ProjectDetails = () => {
   }, [projectId])
 
   useEffect(() => {
-    axios.get(`http://192.168.1.129/roy/upload`)
+    axios.get(`http://192.168.122.1/roy/upload`)
       .then(response => {
         setFiles(response.data.data)
       })
