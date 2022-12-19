@@ -39,7 +39,7 @@ const ProjectList = () => {
 
     if (type === 'create') {
       
-    axios.post(`http://192.168.122.1/roy/project`, {projectname: project.name, description: project.desc})
+    axios.post(`http://localhost:8080/project`, {projectname: project.name, description: project.desc})
       .then(response => {
         console.log(response.data.data);
         handleCloseCreate()
@@ -55,7 +55,7 @@ const ProjectList = () => {
   }
   else {
 
-    axios.put(`http://192.168.122.1/roy/project/${project.id}`, {projectname: project.name, description: project.desc})
+    axios.put(`http://localhost:8080/project/${project.id}`, {projectname: project.name, description: project.desc})
       .then(response => {
         console.log(response.data.data);
         console.log(project.id)
@@ -89,7 +89,7 @@ const ProjectList = () => {
   
 
   useEffect(() => {
-    axios.get(`http://192.168.122.1/roy/project`)
+    axios.get(`http://localhost:8080/project`)
     // axios.get(`https://jsonplaceholder.typicode.com/users`)
       .then(response => {
         console.log(typeof response.data.data, 'dari respons');
@@ -104,7 +104,7 @@ const ProjectList = () => {
 
 
   const handleDelete = () => {
-    axios.delete(`http://192.168.122.1/roy/project/${project.id}`)
+    axios.delete(`http://localhost:8080/project/${project.id}`)
     .then(response => {
       setProjects(
         response.data.data

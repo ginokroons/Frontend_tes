@@ -49,7 +49,7 @@ const ProjectDetails = () => {
   
 
   useEffect(() => {
-    axios.get(`http://192.168.122.1/roy/project/${projectId}`)
+    axios.get(`http://localhost:8080/project/${projectId}`)
       .then(response => {
         setProject(response.data.data)
       })
@@ -59,7 +59,7 @@ const ProjectDetails = () => {
   }, [projectId])
 
   useEffect(() => {
-    axios.get(`http://192.168.122.1/roy/upload`)
+    axios.get(`http://loclahost:8080/upload`)
       .then(response => {
         setFiles(response.data.data)
       })
@@ -98,10 +98,8 @@ const ProjectDetails = () => {
               justifyContent: 'center',
               width: 200
             }}>
-            <Typography variant='h4' noWrap>{project?.projectname??"Project 1"}</Typography>
-            <Typography variant='subtitle2' noWrap>{project?.description??"For Testing Only"}</Typography>
-            {/* <Typography variant='h4' noWrap>{project?.projectname??<Skeleton width='100px' />}</Typography>
-            <Typography variant='subtitle2' noWrap>{project?.description??<Skeleton width='200px'/>}</Typography> */}
+            <Typography variant='h4' noWrap>{project?.projectname??<Skeleton width='100px' />}</Typography>
+            <Typography variant='subtitle2' noWrap>{project?.description??<Skeleton width='200px'/>}</Typography>
           </Box>
         </Box>
 
