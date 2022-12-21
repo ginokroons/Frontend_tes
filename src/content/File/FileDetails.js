@@ -3,14 +3,16 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Box, Card, CircularProgress, Skeleton, TableCell, TableRow, Typography } from '@mui/material';
 import { FileCopy } from '@mui/icons-material';
+import ScanResultCard from '../../components/ScanResultCard';
 
-const FileDetails = (result) => {
+const FileDetails = () => {
 
   const {fileId} = useParams();
   const [file, setFile] = useState(null);
+  const [result, setResult] = useState(null)
 
   useEffect(() => {
-    axios.get(`http://localhost:8080/jsonfile/${fileId}`)
+    axios.get(`http://localhost:8080/upload/${fileId}`)
       .then(response => {
         console.log(response.data.data, "hai");
         setFile(response.data.data)
@@ -19,6 +21,16 @@ const FileDetails = (result) => {
         console.log(err);
       });
   }, [fileId])
+
+  useEffect(() => {
+    axios.get(`http://localhost:8080/jsonfile/${fileId}`)
+      .then(response => {
+        setResult(response.data.data)
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [])
 
   return (
     <Box className='Content'>
@@ -51,21 +63,10 @@ const FileDetails = (result) => {
         </Box>
       </Box>
 
-      <Card sx={{ width: '100%', height: '300px', mt: 4, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          {result.filter((file) => file.fileID === parseInt(FileId)).map(filteredfile => (
-            console.log(filteredfile),
-              <TableRow
-                key={filteredfile.ID}
-                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-              >
-                <TableCell component="th" scope="row">
-                {filteredfile.pathfile}
-                </TableCell>
-                <TableCell>{filteredfile.pathjson}</TableCell>
-              </TableRow>
-            ))}
-            <CircularProgress size={80}/>
-      </Card>
+      <ScanResultCard
+        result={result}
+        fileId={fileId}
+      />
 
     </Box>
 

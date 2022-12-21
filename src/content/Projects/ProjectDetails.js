@@ -22,7 +22,7 @@ const ProjectDetails = () => {
   
   const handleClickDetails1 = (tes1) => {
     console.log(tes1, 'tes');
-    navigate(`/project-list/${tes1.ID}/`)
+    navigate(`/project-list/${tes1.ProjectID}/${tes1.ID}`)
   }
   const handleClick = (event, type) => {
     setType(type)
@@ -76,7 +76,7 @@ const ProjectDetails = () => {
   const handleDelete1 = () => {
     axios.delete(`http://localhost:8080/project/${project.id}`)
     .then(response => {
-      setFiles(
+      setProject(
         response.data.data
       )
     })
