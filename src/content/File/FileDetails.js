@@ -10,8 +10,9 @@ const FileDetails = (result) => {
   const [file, setFile] = useState(null);
 
   useEffect(() => {
-    axios.get(`http://192.168.122.1/roy/upload/${fileId}`)
+    axios.get(`http://localhost:8080/jsonfile/${fileId}`)
       .then(response => {
+        console.log(response.data.data, "hai");
         setFile(response.data.data)
       })
       .catch((err) => {

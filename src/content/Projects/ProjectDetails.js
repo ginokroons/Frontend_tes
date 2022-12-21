@@ -19,9 +19,10 @@ const ProjectDetails = () => {
   const [project, setProject] = useState(null);
   const [open1, setOpen1] = useState({imagename: false, imageupload: false, confedit: false, confupload: false});
   const open = Boolean(anchorEl);
-  const handleClickDetails1 = (tes) => {
-    console.log(tes, 'tes');
-    navigate(`/file-details/${tes.ID}`)
+  
+  const handleClickDetails1 = (tes1) => {
+    console.log(tes1, 'tes');
+    navigate(`/project-list/${tes1.ID}/`)
   }
   const handleClick = (event, type) => {
     setType(type)
@@ -59,7 +60,7 @@ const ProjectDetails = () => {
   }, [projectId])
 
   useEffect(() => {
-    axios.get(`http://loclahost:8080/upload`)
+    axios.get(`http://localhost:8080/upload`)
       .then(response => {
         setFiles(response.data.data)
       })
@@ -70,7 +71,20 @@ const ProjectDetails = () => {
 
   useEffect(() => {
   }, [files])
+
   
+  const handleDelete1 = () => {
+    axios.delete(`http://localhost:8080/project/${project.id}`)
+    .then(response => {
+      setFiles(
+        response.data.data
+      )
+    })
+    .catch(err => {
+      console.log(err.response.data.error)
+      console.log(project.id)
+    })
+  }
 
 
   return (
@@ -155,6 +169,7 @@ const ProjectDetails = () => {
           files={files}
           projectId={projectId}
           handleClickDetails1={handleClickDetails1}
+          handleDelete1={handleDelete1}
         />
       </Card>
       <ImageName

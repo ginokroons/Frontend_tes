@@ -7,7 +7,8 @@ import { OpenInNew, Delete } from '@mui/icons-material';
 
 
 
-const FileTable = ({files, projectId}) => {
+
+const FileTable = ({files, projectId, handleDelete1, handleClickDetails1}) => {
   console.log(files.filter(data=>data.ProjectID===parseInt(projectId)),'haii')
   console.log((typeof parseInt(projectId)), projectId)
   console.log(files.map(data=>data.ProjectID))
@@ -35,6 +36,15 @@ const FileTable = ({files, projectId}) => {
                 {filteredfile.pathfile}
                 </TableCell>
                 <TableCell>{filteredfile.pathjson}</TableCell>
+                <TableCell>{filteredfile.CreatedAt}</TableCell>
+                <TableCell>
+                <IconButton onClick={() => handleDelete1()}>
+                  <Delete sx={{color: '#f44336'}}/>
+                </IconButton>
+                <IconButton onClick={() => handleClickDetails1(filteredfile)}>
+                  <OpenInNew color='primary'/>
+                </IconButton>
+              </TableCell>
               </TableRow>
             ))}
           </TableBody>
