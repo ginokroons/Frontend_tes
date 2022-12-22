@@ -1,15 +1,19 @@
 import { React, useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { Box, Card, CircularProgress, Skeleton, TableCell, TableRow, Typography } from '@mui/material';
+import { Box, Card, Skeleton, Typography } from '@mui/material';
 import { FileCopy } from '@mui/icons-material';
 import ScanResultCard from '../../components/ScanResultCard';
 
 const FileDetails = () => {
 
   const {fileId} = useParams();
-  const [file, setFile] = useState(null);
-  const [result, setResult] = useState(null)
+  const [file, setFile] = useState([]);
+  const [results, setResults] = useState([]);
+
+  console.log(results, "ye");
+  console.log(fileId);
+  console.log(file, 'ini file');
 
   useEffect(() => {
     axios.get(`http://localhost:8080/upload/${fileId}`)
@@ -25,12 +29,13 @@ const FileDetails = () => {
   useEffect(() => {
     axios.get(`http://localhost:8080/jsonfile/${fileId}`)
       .then(response => {
-        setResult(response.data.data)
+        console.log(response.data, "hai")
+        setResults(response.data)
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [])
+  }, [fileId])
 
   return (
     <Box className='Content'>
@@ -64,7 +69,7 @@ const FileDetails = () => {
       </Box>
 
       <ScanResultCard
-        result={result}
+        results={results}
         fileId={fileId}
       />
 
