@@ -29,8 +29,8 @@ const FileDetails = () => {
   useEffect(() => {
     axios.get(`http://localhost:8080/jsonfile/${fileId}`)
       .then(response => {
-        console.log(response.data, "hai")
-        setResults(response.data)
+        console.log(response.data.Results, "hai")
+        setResults(response.data.Results)
       })
       .catch((err) => {
         console.log(err);
