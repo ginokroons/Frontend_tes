@@ -16,7 +16,7 @@ const FileDetails = () => {
   console.log(file, 'ini file');
 
   useEffect(() => {
-    axios.get(`http://localhost:8080/upload/${fileId}`)
+    axios.get(`${process.env.REACT_APP_BACKEND_ROY}/upload/${fileId}`)
       .then(response => {
         console.log(response.data.data, "hai");
         setFile(response.data.data)
@@ -27,10 +27,10 @@ const FileDetails = () => {
   }, [fileId])
 
   useEffect(() => {
-    axios.get(`http://localhost:8080/jsonfile/${fileId}`)
+    axios.get(`${process.env.REACT_APP_BACKEND_ROY}/jsonfile/${fileId}`)
       .then(response => {
-        console.log(response.data, "hai")
-        setResults(response.data)
+        console.log(response, "hai")
+        setResults(response)
       })
       .catch((err) => {
         console.log(err);

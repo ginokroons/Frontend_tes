@@ -50,7 +50,7 @@ const ProjectDetails = () => {
   
 
   useEffect(() => {
-    axios.get(`http://localhost:8080/project/${projectId}`)
+    axios.get(`${process.env.REACT_APP_BACKEND_ROY}/project/${projectId}`)
       .then(response => {
         setProject(response.data.data)
       })
@@ -60,7 +60,7 @@ const ProjectDetails = () => {
   }, [projectId])
 
   useEffect(() => {
-    axios.get(`http://localhost:8080/upload`)
+    axios.get(`${process.env.REACT_APP_BACKEND_ROY}/upload`)
       .then(response => {
         setFiles(response.data.data)
       })
@@ -74,7 +74,7 @@ const ProjectDetails = () => {
 
   
   const handleDelete1 = () => {
-    axios.delete(`http://localhost:8080/project/${project.id}`)
+    axios.delete(`${process.env.REACT_APP_BACKEND_ROY}/project/${project.id}`)
     .then(response => {
       setProject(
         response.data.data

@@ -22,17 +22,17 @@ const ImageName = ({open1, handleClose}) => {
   const [nameImage, setNameImage] = useState('');
 
     useEffect(() => {
-        // axios.get(`https://joanitolopo.space/get_result/`+ 'python')
-        //     .then(response => {
-        //         console.log(response);
-        //     });
+        axios.get(`${process.env.REACT_APP_BACKEND_JOAN}/get_result/`+ nameImage)
+            .then(response => {
+                console.log(response);
+            });
     }, [nameImage])
     
 
     const handleSubmit = (event) => {
         event.preventDefault()
 
-        axios.post(`https://joanitolopo.space/scan_image`+ nameImage)
+        axios.post(`${process.env.REACT_APP_BACKEND_JOAN}/scan_image`, {Image: nameImage})
           .then(response => {
               console.log(response);
               console.log('hai');

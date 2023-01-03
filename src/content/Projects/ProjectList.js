@@ -39,11 +39,11 @@ const ProjectList = () => {
 
     if (type === 'create') {
       
-    axios.post(`http://localhost:8080/project`, {projectname: project.name, description: project.desc})
+    axios.post(`${process.env.REACT_APP_BACKEND_ROY}/project`, {projectname: project.name, description: project.desc})
       .then(response => {
         console.log(response.data.data);
         handleCloseCreate()
-        // window.location.reload() 
+        window.location.reload()
       })
       .catch(err => {
         console.log(err.response.data.error)
@@ -55,12 +55,12 @@ const ProjectList = () => {
   }
   else {
 
-    axios.put(`http://localhost:8080/project/${project.id}`, {projectname: project.name, description: project.desc})
+    axios.put(`${process.env.REACT_APP_BACKEND_ROY}/project/${project.id}`, {projectname: project.name, description: project.desc})
       .then(response => {
         console.log(response.data.data);
         console.log(project.id)
         handleCloseUpdate()
-        // window.location.reload() 
+        window.location.reload() 
       });
 
     console.log(event.target);
@@ -89,7 +89,7 @@ const ProjectList = () => {
   
 
   useEffect(() => {
-    axios.get(`http://localhost:8080/project`)
+    axios.get(`${process.env.REACT_APP_BACKEND_ROY}/project`)
     // axios.get(`https://jsonplaceholder.typicode.com/users`)
       .then(response => {
         console.log(typeof response.data.data, 'dari respons');
@@ -103,16 +103,18 @@ const ProjectList = () => {
   }, [])
 
 
-  const handleDelete = () => {
-    axios.delete(`http://localhost:8080/project/${project.id}`)
+  const handleDelete = (data) => {
+    axios.delete(`${process.env.REACT_APP_BACKEND_ROY}/project/${data.ID}`)
     .then(response => {
       setProjects(
-        response.data.data
+        response
       )
+      window.location.reload()
     })
     .catch(err => {
       console.log(err.response.data.error)
       console.log(project.id)
+      console.log(data)
     })
   }
 

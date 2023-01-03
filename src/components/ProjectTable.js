@@ -33,7 +33,7 @@ const ProjectTable = ({projects, handleDelete, handleOpenUpdate, handleClickDeta
                 <IconButton onClick={() => handleOpenUpdate(project)}>
                   <Edit color='primary'/>
                 </IconButton>
-                <IconButton onClick={() => handleDelete()}>
+                <IconButton onClick={() => handleDelete(project)}>
                   <Delete sx={{color: '#f44336'}}/>
                 </IconButton>
                 <IconButton onClick={() => handleClickDetails(project)}>
