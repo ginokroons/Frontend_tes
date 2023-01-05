@@ -29,8 +29,8 @@ const FileDetails = () => {
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_BACKEND_ROY}/jsonfile/${fileId}`)
       .then(response => {
-        console.log(response.data, "hai")
-        setResults(response.data)
+        console.log(response, "hai")
+        setResults(response)
       })
       .catch((err) => {
         console.log(err);

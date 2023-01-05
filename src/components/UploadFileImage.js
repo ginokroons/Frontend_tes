@@ -43,35 +43,41 @@ function UploadFileImage({open1, handleClose}) {
         'application/x-tar': []
       }
     });
+
+  const formData = new FormData();
+  formData.append('file', selectedFiles);
+
+  const config = {
+    headers: { 'content-type': 'multipart/form-data' }
+  }
     
-    const acceptedFileItems = acceptedFiles.map(file => {
-      console.log(file);
-      // handleFiles(file)
-      return (
-        <Card sx={{m: 2, height: 50, width: 400, display: 'flex', alignItems: 'center', justifyContent: 'flex-start'}}
-        >
-          <InsertDriveFile color='primary' sx={{ m: 1, fontSize: 30 }} />
-          {file.name}
-        </Card>
-      )
-    });
-    
-    const fileRejectionItems = fileRejections.map(({ file, errors }) => {
-      console.log(file, errors);
-      return (<li key={file.path}>
-        {file.path} - {file.size} bytes
-        <ul>
-          {errors.map(e => (
-            <li key={e.code}> {e.message} </li>
-          ))}
-        </ul>
-      </li>)
-    });
-    
+  const acceptedFileItems = acceptedFiles.map(file => {
+    console.log(file);
+    return (
+      <Card sx={{m: 2, height: 50, width: 400, display: 'flex', alignItems: 'center', justifyContent: 'flex-start'}}
+      >
+        <InsertDriveFile color='primary' sx={{ m: 1, fontSize: 30 }} />
+        {file.name}
+      </Card>
+    )
+  });
+  
+  const fileRejectionItems = fileRejections.map(({ file, errors }) => {
+    console.log(file, errors);
+    return (<li key={file.path}>
+      {file.path} - {file.size} bytes
+      <ul>
+        {errors.map(e => (
+          <li key={e.code}> {e.message} </li>
+        ))}
+      </ul>
+    </li>)
+  });
+  
   const handleSubmitFile1 = (event) => {
     event.preventDefault()
       
-    axios.post(`${process.env.REACT_APP_BACKEND_JOAN}/uploadFile`, {file: selectedFiles})
+    axios.post(`${process.env.REACT_APP_BACKEND_JOAN}/uploadFile`, formData, config)
       .then(response => {
         console.log(response);
         // handleCloseCreate()

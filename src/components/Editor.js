@@ -36,6 +36,15 @@ function Editor({open1, handleClose}) {
 
   const [code, setCode] = useState('');
 
+
+  const formData = new FormData();
+  formData.append('pathfile', code);
+  // formData.append('ProjectID', projectId);
+
+  const config = {
+    headers: { 'content-type': 'multipart/form-data' }
+  }
+
   const handleChange = (event) => {
     setCode(event);
     console.log(event);

@@ -74,7 +74,7 @@ const ProjectDetails = () => {
 
   
   const handleDelete1 = () => {
-    axios.delete(`${process.env.REACT_APP_BACKEND_ROY}/project/${project.id}`)
+    axios.delete(`${process.env.REACT_APP_BACKEND_ROY}/upload/${project.id}`)
     .then(response => {
       setProject(
         response.data.data
@@ -186,6 +186,7 @@ const ProjectDetails = () => {
       />
       <UploadFileConf
         open1={open1.confupload}
+        projectId={projectId}
         handleClose={handleCloseConfUpload}
       />
     </Box>
